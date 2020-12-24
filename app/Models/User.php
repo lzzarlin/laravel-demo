@@ -8,6 +8,7 @@ use Illuminate\Notifications\Notifiable;
 
 use Illuminate\Support\Str;
 
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -56,6 +57,11 @@ class User extends Authenticatable
     public function statuses()
     {
         return $this->hasMany(Status::class);
+    }
+
+    public function feed()
+    {
+        return $this->statuses()->orderBy('created_at','desc');
     }
 
 
